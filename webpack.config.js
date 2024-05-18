@@ -30,11 +30,6 @@ module.exports = {
           },
         },
       },
-      {
-        //Alocar o css ao documento
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
-      },
     ], //Regras usa (Arrays, com objetos dentro)
   },
   devtool: "source-map", //Isso aqui faz o mapeamento do erro, pra gente identificar quando houver um erro no bundle

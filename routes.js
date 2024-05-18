@@ -1,14 +1,36 @@
 const express = require("express");
 const route = express.Router();
-const homeController = require("./src/controllers/homeController"); //Indicar o controller
-const contats = require("./src/controllers/contatoController"); //Indicar outro controller
+const homeController = require("./src/controllers/homeController");
+const loginController = require("./src/controllers/loginController");
+const cadastroController = require("./src/controllers/cadastroController");
+const contatoController = require("./src/controllers/contatoControler");
+const perfilController = require('./src/controllers/perfilController');
 
-//               Middleware
-route.get('/', homeController.form); //--> Pegar a função form do módulo do controller
+const { checkUserReq } = require("./src/middlewares/midGlobal");
 
-//Como podemos ver, ele faz uma corrente, tinha dados de um cliente no primeiro middleware, que foi passado como referência para todas as requisições de TODOS os middlewares, e eu loguei eles em todos...Por que é uma corrente.
+//Rota da home
+route.get("/", homeController.index);
 
-route.post("/", homeController.trataDados); //--> Pegar a função trataDados do controller
-route.get("/contato/:idContato?/:numero?", contats.mostraInfo); //--> Pegar a função mostraInfo
+//Rotas de login
+route.get("/login/index", loginController.index);
+route.post("/login/login", loginController.login);
+route.get("/login/logout", loginController.logout);
 
-module.exports = route; //--> Exportar as rotas para usar no index
+//Rotas de cadastro
+route.get("/cadastro/index", cadastroController.index);
+route.post("/cadastro/cadastro", cadastroController.register);
+
+//Rotas de contato
+route.get("/contato/index", checkUserReq, contatoController.index);
+route.post('/contato/register', checkUserReq, contatoController.register);
+route.get('/contato/index/:id', checkUserReq, contatoController.editIndex);
+route.post('/contato/edit/:id', checkUserReq, contatoController.edit);
+route.get('/contato/delete/:id', checkUserReq, contatoController.delContato);
+
+//Rotas de perfil
+route.get('/perfil/index', checkUserReq, perfilController.index);
+route.get('/perfil/editar/:id', checkUserReq, perfilController.editar);
+route.post('/perfil/editar/:id', checkUserReq, perfilController.edit);
+
+
+module.exports = route;

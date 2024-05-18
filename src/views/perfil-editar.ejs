@@ -1,0 +1,38 @@
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
+
+<div class="container">
+    <div class="row">
+      <div class="col-lg-2"></div>
+  
+      <!-- Mensagem descrevendo agenda -->
+      <div class="col-lg-8 my-4">
+        <h1 class="text-center">Editar</h1>
+        <p class="text-center lead">Digite o seu novo nome ou email</p>
+  
+        <%- include('includes/messages')%>
+  
+          <div class="col-md-7 mt-4" style="margin: 0 auto;">
+            
+            <h4>Seus dados</h4>
+            <form class="mt-2 form-perfil" action="/perfil/editar/<%= user._id %>" method="post">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+              <div class="form-group my-1">
+                <label>Nome</label>
+                <input type="text" class="form-control" name="nome" value="<%=user.nome%>">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" name="email" value="<%=user.email%>">
+              </div>
+              <button type="submit" class="btn btn-primary my-3">Salvar</button>
+              <a href="/" class="btn btn-primary my-3">Voltar</a>
+          </div>
+        </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%- include('includes/footer') %>

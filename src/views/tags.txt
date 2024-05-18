@@ -1,0 +1,33 @@
+Explicação das tags
+
+<%  Controle de Fluxo (if, for...) %>
+
+<= Imprime escapando caracteres %>
+
+<%- Imprime sem escapar caracteres %>
+
+Exemplo de escapamento de caracteres : Caso utilizamos alguma coisa de css direto no objeto titulo
+
+titulo: <span style="color red;">titulo</span>
+
+No caso da tag com "=" ele NÃO irá executar o CSS, irá imprimir na pagina o comando...
+
+No caso da tag com "-" ele executará o css, fazendo com que "titulo" fique vermelho
+
+<%# Comentários %> 
+
+<%- Include('caminho/arquivo') %>
+
+--------------------------------------------------------------------------------------
+
+Para controle de fluxos em caso de escopos, são feitos desta fora
+
+<% if(condição) { %>
+
+    <%= Conteúdo %>
+
+        <% } else { %>
+
+            <%= Outro conteúdo %>
+            
+        <% } %>

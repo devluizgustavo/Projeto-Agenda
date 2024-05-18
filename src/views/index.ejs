@@ -1,21 +1,42 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modelo</title>
-  </head>
+<%- include('includes/head') %> <%- include('includes/nav') %>
 
-  <body>
-    <section class="container">
-      <h1>Formulário</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
 
-      <form action="/" method="post">
-        <label for="">Cliente</label>
-        <input type="text" name="nome"/>
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
-    <script src="./assets/js/bundle.js"></script>
-  </body>
-</html>
+    <!-- Mensagem descrevendo agenda -->
+    <div class="col-lg-8 my-4">
+      <h1 class="text-center">Agenda</h1>
+      <p class="text-center lead">Seus contatos estão abaixo</p>
+
+      <%-  include('includes/messages') %>
+
+      <% if (contatos.length > 0) { %>
+
+      <!-- Tabela dos contatos -->
+
+      <div class="responsive-table">
+        <table class="table">
+          <% contatos.forEach(contato => { %>
+            <tr>
+              <td><%=contato.nome%></td>
+              <td><%=contato.sobrenome%></td>
+              <td><%=contato.telefone%></td>
+              <td><%=contato.email%></td>
+              <td><a style="text-decoration: none" href="/contato/index/<%=contato._id %>">Editar</a></td>
+              <td><a class="text-danger"href="/contato/delete/<%=contato._id %>">Excluir</a></td>
+            </tr>
+          <% }); %>
+
+        </table>
+      </div>
+      <% } else { %>
+          <p class="text-center lead">Não existem contatos na sua agenda</p>        
+        <% } %>
+    </div>
+
+    <div class="col-lg-2"></div>
+  </div>
+</div>
+
+<%- include('includes/footer') %>

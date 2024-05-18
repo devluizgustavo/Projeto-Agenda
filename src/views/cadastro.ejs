@@ -1,0 +1,45 @@
+<%- include('includes/head') %> <%- include('includes/nav') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-2"></div>
+
+    <!-- Mensagem descrevendo agenda -->
+    <div class="col-lg-8 my-4">
+      <h1 class="text-center">Cadastro</h1>
+      <p class="text-center lead">Faça o seu cadastro abaixo, ou volte para acessar sua conta</p>
+
+      <%- include('includes/messages')%>
+
+      <div class="row my-4">
+        <div class="col-md-7 mt-2" style="margin: 0 auto;">
+
+          <h4>Faça seu cadastro</h4>
+          <p>Se você ainda não tem uma conta, preencha o formulário abaixo:</p>
+
+          <form class="form-cadastro" action="/cadastro/cadastro" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <div class="form-group my-1">
+              <label>Insira seu nome</label>
+              <input type="text" class="form-control" name="nome">
+            </div>
+            <div class="form-group">
+              <label>Insira seu email</label>
+              <input type="email" class="form-control" name="email">
+            </div>
+            <div class="form-group mb-2">
+              <label>Insira seu senha</label>
+              <input type="password" class="form-control" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Criar conta</button>
+            <a href="/login/index" class="btn btn-primary">Voltar</a>
+          </form>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('includes/footer') %>
